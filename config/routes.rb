@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get "users/index"
   get "reservations/index"
   get "rooms/index"
   root 'homes#top'
   get "homes/top"
+
+  resources :reservations
+  resources :rooms
+  resources :users
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
