@@ -1,12 +1,11 @@
 <h2>施設新規登録</h2>
 
-<%= form_with model: @rooms do |f| %>
+<%= form_with model: @room do |f| %>
   <table>
     <tr>
       <th><%= f.label :hotel_name ,"施設名" %></th>
       <td><%= f.text_field :hotel_name %></td>
     </tr>
-    <h3>ユーザー新規作成</h3>
 
     <tr>
       <th><%= f.label :hotel_detail ,"施設詳細" %></th>

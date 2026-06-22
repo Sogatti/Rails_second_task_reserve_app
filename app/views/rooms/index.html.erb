@@ -1,5 +1,9 @@
 <h2>登録済ホテル一覧</h2>
 
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -8,3 +12,33 @@
       <th>紹介文</th>
       <th>料金</th>
       <th>作成日</th>
+      <th>施設詳細</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @room.each do |room| %>
+      <tr>
+        <td><%= room.hotel_image %></td>
+        <td><%= room.hotel_name %></td>
+        <td><%= room.hotel_detail %></td>
+        <td><%= room.hotel_rate %></td>
+        <td><%= room.created_at.to_fs(:datetime_jp) %></td>
+        <td>
+        <%= link_to "施設詳細", room %>
+        </td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "施設新規登録へ", :new_room %>
+</p>
+
+
+
+
+

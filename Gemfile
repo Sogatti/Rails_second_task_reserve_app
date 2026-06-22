@@ -56,4 +56,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'carrierwave'
 gem "devise", "~> 5.0"

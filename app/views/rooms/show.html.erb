@@ -1,0 +1,35 @@
+<h2>施設詳細</h2>
+
+<table>
+  <tr>
+    <th>画像</th>
+    <td>
+      <% if @room.hotel_image.to_s.strip.present? %>
+        <%= image_tag @room.hotel_image, class:'hotel_image' %>
+      <% else %>
+        <%= image_tag 'default-hotel-image.png',alt: '施設画像', class:'hotel_image' %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.hotel_name %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @room.address %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @room.hotel_rate %></td>
+  </tr>
+  <tr>
+    <th>紹介文</th>
+    <td><%= @room.hotel_detail %></td>
+  </tr>
+
+  <div>
+    <ul>
+      <li><%= link_to "直前に戻る",:back %></li>
+    </ul>
+  </diV>
