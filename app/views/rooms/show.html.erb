@@ -4,8 +4,8 @@
   <tr>
     <th>画像</th>
     <td>
-      <% if @room.hotel_image.to_s.strip.present? %>
-        <%= image_tag @room.hotel_image, class:'hotel_image' %>
+      <% if @room.hotel_image.url.present? %>
+        <%= image_tag @room.hotel_image.url, class:'hotel_image' %>
       <% else %>
         <%= image_tag 'default-hotel-image.png',alt: '施設画像', class:'hotel_image' %>
       <% end %>
