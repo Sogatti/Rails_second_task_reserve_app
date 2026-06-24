@@ -20,7 +20,13 @@
   <tbody>
     <% @room.each do |room| %>
       <tr>
-        <td><%= room.hotel_image %></td>
+        <td>
+          <% if room.hotel_image.url.present? %>
+            <%= image_tag room.hotel_image.url, class: 'hotel_image' %>
+          <% else %>
+            <%= image_tag 'default-hotel-image.png', alt: '施設画像', class: 'hotel_image' %>
+          <% end %>
+        </td>
         <td><%= room.hotel_name %></td>
         <td><%= room.hotel_detail %></td>
         <td><%= room.hotel_rate %></td>

@@ -12,3 +12,11 @@ table td {
   background-color: #ccf;
   padding: 5px;
 }
+
+/* 「hotel_image」というクラス名がついた画像にだけ適用するデザイン */
+.hotel_image {
+  width: 150px;         /* 横幅を150ピクセルにする */
+  height: 100px;        /* 縦幅を100ピクセルにする */
+  object-fit: cover;    /* 画像が縦横にびよーんと伸びないように綺麗に切り抜く */
+  border-radius: 8px;   /* 画像の四隅をちょっと丸くする */
+}
