@@ -24,11 +24,23 @@ Room.new(params.require(:room).permit(:hotel_name, :hotel_detail, :hotel_rate, :
   end
 
   def edit
+    @room = Room.find(params[:id])
   end
 
   def update
+    @room = Room.find(params[:id])
+    if @room.update(params.require(:room).permit(:hotel_image, :hotel_name, :address, :hotel_rate, :hotel_detail))
+      flash[:notice] = "ユーザーが「#{@room.id}」の情報を更新しました"
+      redirect_to :rooms
+    else
+      render "edit" , status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+
+    redirect_to rooms_path, notice: "削除しました", status: :see_other
   end
 end

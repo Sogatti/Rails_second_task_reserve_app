@@ -1,0 +1,37 @@
+<h2>施設編集</h2>
+
+<%= form_with model: @room do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :hotel_name ,"施設名" %></th>
+      <td><%= f.text_field :hotel_name %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_detail ,"施設詳細" %></th>
+      <td><%= f.text_area :hotel_detail %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_rate,"料金" %></th>
+      <td><%= f.text_field :hotel_rate %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :address ,"住所" %></th>
+      <td><%= f.text_area :address %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_image ,"施設画像" %></th>
+      <td><%= f.file_field :hotel_image %></td>
+    </tr>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "編集を完了する"%></li>
+      <li><%= link_to "キャンセル", :back %></li>
+    </ul>
+  </div>
+<% end %>
