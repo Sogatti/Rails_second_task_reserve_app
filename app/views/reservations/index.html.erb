@@ -1,2 +1,44 @@
-<h1>Reservations#index</h1>
-<p>Find me in app/views/reservations/index.html.erb</p>
+<h1>予約一覧</h1>
+
+<% if @reservations.empty? %>
+  <p>予約はまだありません。</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>画像</th>
+        <th>施設名</th>
+        <th>チェックイン日</th>
+        <th>チェックアウト日</th>
+        <th>宿泊人数</th>
+        <th>合計金額</th>
+        <th>予約確定日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td>
+            <% if reservation.room.hotel_image.url.present? %>
+              <%= image_tag reservation.room.hotel_image.url, class: 'hotel_image' %>
+            <% else %>
+              <%= image_tag 'default-hotel-image.png', alt: '施設画像', class: 'hotel_image' %>
+            <% end %>
+          </td>
+          <td><%= reservation.room.hotel_name %></td>
+          <td><%= reservation.check_in_date.strftime("%Y/%m/%d") %></td>
+          <td><%= reservation.check_out_date.strftime("%Y/%m/%d") %></td>
+          <td><%= reservation.guest_count %>人</td>
+          <td><%= number_to_currency(reservation.total_price, unit: "円", precision: 0) %></td>
+          <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= link_to "登録済ホテル一覧に戻る", :rooms %></li>
+    </ul>
+  </div>
+<% end %>

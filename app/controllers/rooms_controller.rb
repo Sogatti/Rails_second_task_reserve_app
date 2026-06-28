@@ -21,6 +21,7 @@ Room.new(params.require(:room).permit(:hotel_name, :hotel_detail, :hotel_rate, :
 
   def show
     @room = Room.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def edit

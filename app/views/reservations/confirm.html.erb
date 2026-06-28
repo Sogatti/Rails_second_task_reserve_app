@@ -1,0 +1,50 @@
+<!-- app/views/reservations/confirm.html.erb -->
+
+<h1>予約内容の確認</h1>
+
+<% if @reservation.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @reservation.errors.count %>件のエラーがあります。</h2>
+    <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<table>
+  <tr>
+    <th>施設名</th>
+    <td><%= @reservation.room.hotel_name %></td>
+  </tr>
+  <tr>
+    <th>チェックイン日</th>
+    <td><%= @reservation.check_in_date.strftime("%Y/%m/%d") %></td>
+  </tr>
+  <tr>
+    <th>チェックアウト日</th>
+    <td><%= @reservation.check_out_date.strftime("%Y/%m/%d") %></td>
+  </tr>
+  <tr>
+    <th>宿泊人数</th>
+    <td><%= @reservation.guest_count %>人</td>
+  </tr>
+  <tr>
+    <th>合計金額</th>
+    <td><%= number_to_currency(@reservation.total_price, unit: "円", precision: 0) %></td>
+  </tr>
+</table>
+
+<p>上記の内容で予約を確定しますか？</p>
+
+<%= form_with(model: @reservation, url: execute_create_reservations_path, local: true) do |f| %>
+  <%= f.hidden_field :room_id %>
+  <%= f.hidden_field :check_in_date %>
+  <%= f.hidden_field :check_out_date %>
+  <%= f.hidden_field :guest_count %>
+
+  <%= f.submit "予約を確定する", data: { confirm: "本当にこの内容で予約を確定しますか？" } %>
+<% end %>
+
+<%= link_to "予約内容を修正する", :back %>

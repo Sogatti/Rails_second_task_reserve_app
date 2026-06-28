@@ -33,3 +33,47 @@
       <li><%= link_to "直前に戻る",:back %></li>
     </ul>
   </diV>
+
+  <hr>
+
+<h3>予約する</h3>
+<% if user_signed_in? %>
+  <% # バリデーションエラーがある場合に表示 %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @reservation.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @reservation, url: confirm_reservations_path, local: true) do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+
+    <div class="field">
+      <%= f.label :check_in_date, "チェックイン日" %>
+      <%= f.date_field :check_in_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :check_out_date, "チェックアウト日" %>
+      <%= f.date_field :check_out_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :guest_count, "宿泊人数" %>
+      <%= f.number_field :guest_count %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "予約内容を確認する" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>予約には<br><%= link_to "ログイン", new_user_session_path %>または<br><%= link_to "新規登録", new_user_registration_path %><br>が必要です。</p>
+<% end %>
+
+<hr>

@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   get "users/index"
-  get "reservations/index"
   get "rooms/index"
   root 'homes#top'
   get "homes/top"
 
-  resources :reservations
+  devise_for :users
+  resources :reservations, only: [:index] do
+    collection do
+      post 'confirm'
+      post 'execute_create'
+    end
+  end
   resources :rooms
   resources :users
-  devise_for :users
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
