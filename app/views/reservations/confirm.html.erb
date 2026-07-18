@@ -47,4 +47,4 @@
   <%= f.submit "予約を確定する", data: { confirm: "本当にこの内容で予約を確定しますか？" } %>
 <% end %>
 
-<%= link_to "予約内容を修正する", :back %>
+<%= link_to "予約内容を修正する", room_path(@reservation.room_id) %>
