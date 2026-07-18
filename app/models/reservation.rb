@@ -35,6 +35,6 @@ class Reservation < ApplicationRecord
     return if check_in_date.blank? || check_out_date.blank? ||room.blank?
 
     nights = (check_out_date - check_in_date).to_i
-    self.total_price = nights * room.hotel_rate * guest_count
+    self.total_price = nights * room.hotel_rate * guest_count.to_i
   end
 end
