@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :reservations, only: [:index] do
     collection do
       post 'confirm'
+      get 'confirm'
       post 'execute_create'
     end
   end
