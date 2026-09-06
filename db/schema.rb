@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_27_214928) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_06_021503) do
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_27_214928) do
     t.string "hotel_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,10 +44,14 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_27_214928) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_image"
+    t.string "name"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
+  add_foreign_key "rooms", "users"
 end

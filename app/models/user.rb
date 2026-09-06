@@ -6,5 +6,8 @@ class User < ApplicationRecord
 
   # ===== アソシエーション =====
   # 1人のユーザーは複数の予約を持つ
+  has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
+
+  validates :name, presence: true
 end
