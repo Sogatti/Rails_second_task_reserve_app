@@ -28,7 +28,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :user_image)
   end
 end
-  
-  def index
-  end
 

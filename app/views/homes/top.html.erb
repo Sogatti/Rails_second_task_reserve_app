@@ -1,2 +1,7 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<h1>Share hotelsで最高のホテル体験を！</h1>
+<p>Share hotelsは、ホテルの共有を通じて、最高のホテル体験を提供するサービスです。</p>
+<%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+  <diV>
+    <%= text_field_tag :area, params[:area], placeholder: "エリア名を入力" %>
+  <%= f.submit "検索" %>
+<% end%>

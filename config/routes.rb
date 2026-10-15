@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       post 'execute_create'
     end
   end
-  resources :rooms
+  resources :rooms do
+    collection do
+      get :search
+    end
+  end
   resource :user, only: [:show, :edit, :update] do
     get :profile
   end

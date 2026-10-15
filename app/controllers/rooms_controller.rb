@@ -1,6 +1,9 @@
 class RoomsController < ApplicationController
+
+before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
+
   def index
-    @room = Room.all
+    @rooms = current_user.rooms
   end
 
   def new
@@ -8,14 +11,12 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room =
-Room.new(params.require(:room).permit(:hotel_name, :hotel_detail, :hotel_rate, :address, :hotel_image))
+    @room = current_user.rooms.build(room_params)
     if @room.save
       flash[:notice] = "施設の新規登録が完了しました"
-      redirect_to :rooms_index
+      redirect_to rooms_path
     else
-      render "new", status:
-:unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -44,4 +45,20 @@ Room.new(params.require(:room).permit(:hotel_name, :hotel_detail, :hotel_rate, :
 
     redirect_to rooms_path, notice: "削除しました", status: :see_other
   end
+  
+  def search
+    @rooms = Room.all
+    
+    @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
+
+    keyword = params[:keyword]
+    @rooms = @rooms.where("hotel_name LIKE ? OR hotel_detail LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword.present?
+  end
+
+
+private
+
+ def room_params
+  params.require(:room).permit(:hotel_name, :hotel_detail, :hotel_rate, :address, :hotel_image)
+ end
 end
