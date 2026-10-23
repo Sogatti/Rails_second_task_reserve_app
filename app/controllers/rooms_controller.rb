@@ -49,10 +49,14 @@ before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update,
   def search
     @rooms = Room.all
     
-    @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
+    if params[:area].present?
+      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
+    end
 
-    keyword = params[:keyword]
-    @rooms = @rooms.where("hotel_name LIKE ? OR hotel_detail LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword.present?
+    if params[:keyword].present?
+      keyword = params[:keyword]
+    @rooms = @rooms.where("hotel_name LIKE ? OR hotel_detail LIKE ?", "%#{keyword}%", "%#{keyword}%")
+    end
   end
 
 
