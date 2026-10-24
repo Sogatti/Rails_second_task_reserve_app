@@ -15,18 +15,23 @@ class Reservation < ApplicationRecord
   # カスタムバリデーション: チェックアウトがチェックインより後か
   validate :check_out_after_check_in
 
-  # ===== コールバック（保存前の自動処理） =====
-  # 合計金額を保存前に自動計算
   before_validation :calculate_total_price
 
-  private
-
-  # チェックアウト日がチェックイン日より後かを確認
   def check_out_after_check_in
     return if check_in_date.blank? || check_out_date.blank?
 
     if check_out_date <= check_in_date
       errors.add(:check_out_date, "はチェックイン日より後の日付を選択してください")
+    end
+  end
+
+  validate :check_in_not_in_past
+
+  def check_in_not_in_past
+    return if check_in_date.blank?
+
+    if check_in_date < Date.current
+      errors.add(:check_in_date, "は本日からの日付を選択してください")
     end
   end
 
