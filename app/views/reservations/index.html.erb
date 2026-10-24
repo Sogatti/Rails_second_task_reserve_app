@@ -8,6 +8,7 @@
       <tr>
         <th>画像</th>
         <th>施設名</th>
+        <th>紹介文</th>
         <th>チェックイン日</th>
         <th>チェックアウト日</th>
         <th>宿泊人数</th>
@@ -26,6 +27,7 @@
             <% end %>
           </td>
           <td><%= reservation.room.hotel_name %></td>
+          <td><%= reservation.room.hotel_detail %></td>
           <td><%= reservation.check_in_date.strftime("%Y/%m/%d") %></td>
           <td><%= reservation.check_out_date.strftime("%Y/%m/%d") %></td>
           <td><%= reservation.guest_count %>人</td>
