@@ -31,6 +31,7 @@ class ReservationsController < ApplicationController
   private
 
   def set_room_for_render
+    
     room_id_from_params = params.dig(:reservation, :room_id)
     @room = Room.find(room_id_from_params) if room_id_from_params.present?
   rescue ActiveRecord::RecordNotFound
