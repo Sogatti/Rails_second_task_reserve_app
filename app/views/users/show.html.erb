@@ -1,0 +1,14 @@
+<h2>アカウント</h2>
+
+<table>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td>*********</td>
+  </tr>
+</table>
+
+<%= link_to "アカウントを編集", edit_user_registration_path %>
