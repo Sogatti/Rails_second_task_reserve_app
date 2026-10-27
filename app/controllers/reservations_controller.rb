@@ -7,18 +7,11 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-
-    if params[:reservation].blank?
-      redirect_to rooms_path, alert: "セッションが切れたか、不正なアクセスです。最初からやり直してください。" and return
-    end
-
     @reservation = current_user.reservations.build(reservation_params)
 
     if @reservation.valid?
       render :confirm
     else
-      @room = Room.find(params[:reservation][:room_id]) if params[:reservation][:room_id].present?
-
       flash.now[:alert] = "予約内容に誤りがあります。"
       render "rooms/show", status: :unprocessable_entity
     end
