@@ -32,7 +32,7 @@
   </tr>
   <tr>
     <th>合計金額</th>
-    <td><%= number_to_currency(@reservation.total_price, unit: "円", precision: 0) %></td>
+    <td><%= number_to_currency(@reservation.total_price, unit: "円", format: "%n%u", precision: 0) %></td>
   </tr>
   <tr>
     <th>宿泊日数</th>
