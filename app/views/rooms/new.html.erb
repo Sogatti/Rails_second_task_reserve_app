@@ -1,0 +1,48 @@
+<h2>施設新規登録</h2>
+
+<% if @room.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= @room.errors.count %>件のエラーがあります。</h3>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @room do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :hotel_name ,"施設名" %></th>
+      <td><%= f.text_field :hotel_name %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_detail ,"施設詳細" %></th>
+      <td><%= f.text_area :hotel_detail %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_rate,"料金" %></th>
+      <td><%= f.text_field :hotel_rate %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :address ,"住所" %></th>
+      <td><%= f.text_area :address %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :hotel_image ,"施設画像" %></th>
+      <td><%= f.file_field :hotel_image %></td>
+    </tr>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "施設を登録する"%></li>
+      <li><%= link_to "登録済ホテル一覧に戻る", :rooms %></li>
+    </ul>
+  </div>
+<% end %>

@@ -1,4 +1,27 @@
 Rails.application.routes.draw do
+  get "users/index"
+  get "rooms/index"
+  root 'homes#top'
+  get "homes/top"
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  resources :reservations, only: [:index] do
+    collection do
+      post 'confirm'
+      get 'confirm'
+      post 'execute_create'
+    end
+  end
+  resources :rooms do
+    collection do
+      get :search
+    end
+  end
+  resource :user, only: [:show, :edit, :update] do
+    get :profile
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -1,0 +1,36 @@
+<h2>検索結果</h2>
+
+<p>合計 <%= @rooms.size %> 件</p>
+
+<% if @rooms.empty? %>
+  <p>該当する施設がありません。</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>画像</th>
+        <th>施設名</th>
+        <th>紹介文</th>
+        <th>料金</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td>
+            <% if room.hotel_image.url.present? %>
+              <%= image_tag room.hotel_image.url, class: "hotel_image" %>
+            <% else %>
+              <%= image_tag "default-hotel-image.png", alt: "施設画像", class: "hotel_image" %>
+            <% end %>
+          </td>
+          <td><%= link_to room.hotel_name, room %></td>
+          <td><%= room.hotel_detail %></td>
+          <td><%= room.hotel_rate %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<p><%= link_to "トップに戻る", root_path %></p>

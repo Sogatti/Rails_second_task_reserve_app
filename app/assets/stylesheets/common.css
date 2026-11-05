@@ -1,0 +1,219 @@
+table th {
+  background-color: #fbc25b;
+  padding: 10px 20px;
+}
+
+table td {
+  background-color: #f9ecd5;
+  padding: 10px 20px;
+}
+
+.notice {
+  background-color: #ccf;
+  padding: 5px;
+}
+
+/* 「hotel_image」というクラス名がついた画像にだけ適用するデザイン */
+.hotel_image {
+  width: 150px;         /* 横幅を150ピクセルにする */
+  height: 100px;        /* 縦幅を100ピクセルにする */
+  object-fit: cover;    /* 画像が縦横にびよーんと伸びないように綺麗に切り抜く */
+  border-radius: 8px;   /* 画像の四隅をちょっと丸くする */
+}
+
+
+.header_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== ヘッダー（HTML 変更なし） ===== */
+header {
+  border-bottom: 1px solid #ddd;
+  background: #1c1d3b;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  box-sizing: border-box;
+}
+
+/* ロゴ（nav 直下の最初のリンク） */
+header nav > a:first-of-type {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* ログイン中：ユーザー部分を右端へ */
+header nav > .header-dropdown {
+  margin-left: auto;
+}
+
+/* 未ログイン：<li> を横並び＋右端（ul なし HTML 用） */
+header nav > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav > li:first-of-type {
+  margin-left: auto;
+}
+
+header nav > li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* ドロップダウンメニュー（開いたときに下に浮かせる） */
+.header-dropdown {
+  position: relative;
+}
+
+.header-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  min-width: 200px;
+  background: #0d0d0d;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.header-menu li {
+  margin: 0;
+}
+
+.header-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+
+
+/* クリック部分（アイコン+名前） */
+summary.header-user {
+  cursor: pointer;
+  list-style: none;
+  color: #ffffff;
+}
+
+
+
+summary.header-user::-webkit-details-marker {
+  display: none;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding: 20px;
+  background:#1c1d3b;
+  color: #fff;
+}
+
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;      /* 画面の高さ以上 */
+  margin: 0;              /* ブラウザ既定の余白を消す */
+  display: flex;
+  flex-direction: column; /* 縦に積む */
+}
+
+/* ===== トップページ ===== */
+.top-hero {
+  text-align: center;
+  padding: 64px 16px 48px;
+}
+
+.top-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.top-title {
+  font-size: 1.75rem;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  color: #333;
+}
+
+.top-lead {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0 0 32px;
+}
+
+.top-search {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-field label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.search-submit {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #1c1d3b;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-submit:hover {
+  opacity: 0.9;
+}
