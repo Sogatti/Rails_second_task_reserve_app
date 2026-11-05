@@ -7,6 +7,11 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
+    if params[:reservation].blank?
+      redirect_to rooms_path, alert: "もう一度やり直してください。"
+      return
+    end
+
     @reservation = current_user.reservations.build(reservation_params)
 
     if @reservation.valid?
@@ -31,7 +36,7 @@ class ReservationsController < ApplicationController
   private
 
   def set_room_for_render
-    
+
     room_id_from_params = params.dig(:reservation, :room_id)
     @room = Room.find(room_id_from_params) if room_id_from_params.present?
   rescue ActiveRecord::RecordNotFound
